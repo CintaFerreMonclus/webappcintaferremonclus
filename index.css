@@ -10,7 +10,7 @@ body {
     min-height: -webkit-fill-available;    
     margin: 0px;    /* elimina tots els marges del document */
     font-family: perpetua;    /* un tipus de lletra adient per a llocs web */
-    background-color: #A7F0CA;    /* color de fons en format #RRGGBB */
+    background-color: #81c9f8;    /* color de fons en format #RRGGBB */
 }
 #superior {
     display: flex;
