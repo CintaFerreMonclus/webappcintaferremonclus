@@ -18,8 +18,8 @@ body {
     justify-content: center;    /* centra els elements en la direcció de disposició */
     align-items: center;    /* centra els elements en la direcció perpendicular a la de disposició */
     font-size: 4vmax;    /* mida d'un 4% respecte l'alçària de la pantalla */
-    color: rgb(196, 70, 255);    /* color del text */
-    background-color: #fffd9d ;    /* color de fons */
+    color: rgb(255, 255, 255);    /* color del text */
+    background-color: #b534ff ;    /* color de fons */
 }
 .seccio {
     flex: 1;    /* les seccions ocupen tot l'espai disponible */
@@ -41,8 +41,8 @@ body {
     display: flex;    /* contenidor flex on centrar-hi la icona */
     justify-content: center;
     align-items: center;
-    color: rgb(196, 70, 255);
-    background-color: #fffd9d;
+    color: rgb(255, 255, 255);
+    background-color: #b534ff;
     font-size: 5vmax;
     cursor: pointer;    /* en ordinadors, indica que s'hi pot fer clic */
 }
