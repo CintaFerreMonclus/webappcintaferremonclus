@@ -41,7 +41,7 @@ body {
     justify-content: center;
     align-items: center;
     color: rgb(255, 255, 255);
-    background-color: #b534ff;
+    background-color: #000000;
     font-size: 5vmax;
     cursor: pointer;    /* en ordinadors, indica que s'hi pot fer clic */
 }
