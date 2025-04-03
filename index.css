@@ -19,7 +19,7 @@ body {
     align-items: center;    /* centra els elements en la direcció perpendicular a la de disposició */
     font-size: 4vmax;    /* mida d'un 4% respecte l'alçària de la pantalla */
     color: rgb(0, 0, 0);    /* color del text */
-    background-color: #4d9e5a ;    /* color de fons */
+    background-color: #f7f7f7 ;    /* color de fons */
 }
 .seccio {
     flex: 1;    /* les seccions ocupen tot l'espai disponible */
@@ -97,7 +97,7 @@ body {
 }
 #icona_camera {
     font-size: 40vmin;
-    color: #950E17;
+    color: #ffffff;
 }
 #foto {
     max-width: 60vmin;    /* dimensions màximes per a la prveisualització de les fotos */
@@ -113,7 +113,7 @@ body {
 #div_control i {
     cursor: pointer;
     font-size: 20vmin;    
-    color: green;
+    color: rgb(0, 0, 0);
 }
 #obturador {
     position: absolute;
@@ -166,7 +166,7 @@ body {
 }
 #llista_titol i {
     font-size: 4vmax;
-    color:#950E17;
+    color:#ffffff;
 }
 #llista_titol i:nth-child(1) {    /* primer <i> (miniatura de la foto) */
     flex: 2;
