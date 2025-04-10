@@ -24,6 +24,12 @@ function canvia_seccio(num_boto) {
         if (num_boto == 4) {
             mapa.invalidateSize();
         }
+        if (num_boto == 4) {
+            mapa.invalidateSize();
+            if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
+                navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
+            }
+        }
 }
 function inici_sessio() {
     nom = document.getElementById("nom_usuari").value;    // la propietat "value" d'un quadre de text correspon al text escrit per l'usuari
@@ -210,4 +216,13 @@ let vegueries = [[41.39, 2.17, "Àmbit metropolità (Barcelona)"],    // llista 
                  [41.35, 1.70, "Penedès (Vilafranca del Penedès"]];
 for (i in vegueries) {    // per cada element de la llista
     L.marker([vegueries[i][0], vegueries[i][1]],{title:vegueries[i][2]}).addTo(mapa);
+}
+function geoExit(posicio){
+    let latitud = posicio.coords.latitude;
+    let longitud = posicio.coords.longitude;
+    if (typeof geoID === "undefined") {    
+        geoID = L.marker([latitud, longitud], {zIndexOffset:100, title:"Usuari"}).addTo(mapa);    // es defineix el marcador  geoID i es situa per sobre dels altres
+    } else {    // primeres dades de localització, es crea el marcador d'usuari 
+        geoID.setLatLng([latitud, longitud]);    // actualització de la posició del marcador d'usuari en el mapa
+    }
 }
