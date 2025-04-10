@@ -1,3 +1,6 @@
+let validat = false;    // variable que permet saber si hi ha algun usuari validat
+let nom, contrasenya;
+let scriptURL = "https://script.google.com/macros/s/AKfycbxHIm6gwBWh0IaVjW5N2m_ktTCXOEzJhko1QI2Y58zI7XB1eBETkxvm5H2_Sqs0Zv0/exec"    // s'ha de substituir la cadena de text per la URL del script
 function canvia_seccio(num_boto) {
     const menu = document.getElementById("menu");
     const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu"
@@ -19,10 +22,6 @@ function canvia_seccio(num_boto) {
         }
     }
 }
-let validat = false;    // variable que permet saber si hi ha algun usuari validat
-let nom, contrasenya;
-let scriptURL = "https://script.google.com/macros/s/AKfycbxHIm6gwBWh0IaVjW5N2m_ktTCXOEzJhko1QI2Y58zI7XB1eBETkxvm5H2_Sqs0Zv0/exec"    // s'ha de substituir la cadena de text per la URL del script
-
 function inici_sessio() {
     nom = document.getElementById("nom_usuari").value;    // la propietat "value" d'un quadre de text correspon al text escrit per l'usuari
     contrasenya = document.getElementById("contrasenya").value;
@@ -182,5 +181,15 @@ function omple_llista() {
             }
             document.getElementById("llista_fotos").innerHTML = llista;    // s'ocupa el contenidor "llista_fotos" amb el fragment HTML creat
         }
+    }
+}
+function esborra_foto(id) {
+    if (confirm("Vols esborrar la foto?")) {    // es demana la confirmació a l'usuari
+        indexedDB.open("Dades").onsuccess = event => {   
+                event.target.result.transaction("Fotos", "readwrite").objectStore("Fotos").delete(id).onsuccess = () => {
+                alert("La foto s'ha esborrat.");
+                canvia_seccio(3);    // es recarrega la galeria per tal que ja no mostri la foto esborrada
+            };
+        };
     }
 }
