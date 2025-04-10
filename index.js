@@ -17,10 +17,10 @@ function canvia_seccio(num_boto) {
             boto.style.backgroundColor = "#950E17";
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
+        }
         if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
             omple_llista();
         }
-    }
 }
 function inici_sessio() {
     nom = document.getElementById("nom_usuari").value;    // la propietat "value" d'un quadre de text correspon al text escrit per l'usuari
