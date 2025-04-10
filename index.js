@@ -21,6 +21,9 @@ function canvia_seccio(num_boto) {
         if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
             omple_llista();
         }
+        if (num_boto == 4) {
+            mapa.invalidateSize();
+        }
 }
 function inici_sessio() {
     nom = document.getElementById("nom_usuari").value;    // la propietat "value" d'un quadre de text correspon al text escrit per l'usuari
@@ -74,7 +77,7 @@ function nou_usuari() {
 }
 function tanca_sessio() {
     if (validat) {
-        if (confirm("Vols tancar la sessió?")) {    // S'ha respost "Sí"
+            if (confirm("Vols tancar la sessió?")) {    // S'ha respost "Sí"
             storage.setItem("usuari", "");
             location.reload();    // recàrrega de la pàgina, es reinicialitzen totes les variables
         }
@@ -104,6 +107,10 @@ window.onload = () => {
             }
         }
     });
+    mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
+    }).addTo(mapa);    // s'afegeix la capa al mapa
 }
 function desa_foto() {
     let nou_registre = {    // contingut del nou registre de la base de dades
