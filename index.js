@@ -1,19 +1,9 @@
 let validat = false;    // variable que permet saber si hi ha algun usuari validat
 let nom, contrasenya;
 let scriptURL = "https://script.google.com/macros/s/AKfycbxHIm6gwBWh0IaVjW5N2m_ktTCXOEzJhko1QI2Y58zI7XB1eBETkxvm5H2_Sqs0Zv0/exec"    // s'ha de substituir la cadena de text per la URL del script
+
 function canvia_seccio(num_boto) {
-    if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
-        omple_llista();
-    }
-    if (num_boto == 4) {
-        mapa.invalidateSize();
-    }
-    if (num_boto == 4) {
-        mapa.invalidateSize();
-        if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
-            navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
-        }
-    }
+
     const menu = document.getElementById("menu");
     const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu"
     for (let i = 1; i < num_botons; i++) {
@@ -29,8 +19,19 @@ function canvia_seccio(num_boto) {
             boto.style.backgroundColor = "#950E17";
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
+        if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
+            omple_llista();
         }
+        if (num_boto == 4) {
+            mapa.invalidateSize();
+            if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
+                navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
+            }
+        }
+     }
+
 }
+
 function inici_sessio() {
     nom = document.getElementById("nom_usuari").value;    // la propietat "value" d'un quadre de text correspon al text escrit per l'usuari
     contrasenya = document.getElementById("contrasenya").value;
@@ -49,11 +50,13 @@ function inici_sessio() {
             }
         });    
 }
+
 function inicia_sessio() {
     validat = true;    // usuari validat
     document.getElementById("seccio_0").style.display = "none";    // s'oculta la secció de validació d'usuaris
     canvia_seccio(1);    // es mostra la secció 1
 }
+
 function nou_usuari() {
     nom = document.getElementById("nom_usuari").value;
     contrasenya = document.getElementById("contrasenya").value;
@@ -81,6 +84,7 @@ function nou_usuari() {
             }
         });
 }
+
 function tanca_sessio() {
     if (validat) {
             if (confirm("Vols tancar la sessió?")) {    // S'ha respost "Sí"
@@ -89,7 +93,23 @@ function tanca_sessio() {
         }
     }
 }
+
 window.onload = () => { 
+    mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
+    }).addTo(mapa);    // s'afegeix la capa al mapa
+    let vegueries = [[41.39, 2.17, "Àmbit metropolità (Barcelona)"],    // llista on cada element és una llista amb els valors de latitud, longitud i nom de vegueria com a elements
+                 [42.17, 0.89, "Alt Pirineu i Aran (Tremp)"],
+                 [41.12, 1.24, "Camp de Tarragona (Tarragona)"],
+                 [41.73, 1.83 ,"Comarques centrals (Manresa)"],
+                 [41.98, 2.82, "Comarques gironines (Girona)"],
+                 [41.62, 0.62, "Ponent (Lleida)"],
+                 [40.81, 0.52, "Terres de l'Ebre (Tortosa)"],
+                 [41.35, 1.70, "Penedès (Vilafranca del Penedès"]];
+for (i in vegueries) {    // per cada element de la llista
+    L.marker([vegueries[i][0], vegueries[i][1]],{title:vegueries[i][2]}).addTo(mapa);
+}
     let base_de_dades = storage.getItem("base_de_dades");   
     if(base_de_dades == null) {
         indexedDB.open("Dades").onupgradeneeded = event => {   
@@ -113,11 +133,9 @@ window.onload = () => {
             }
         }
     });
-    mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
-    }).addTo(mapa);    // s'afegeix la capa al mapa
+    
 }
+
 function desa_foto() {
     let nou_registre = {    // contingut del nou registre de la base de dades
         Usuari: usuari,    // nom d'usuari
@@ -131,6 +149,7 @@ function desa_foto() {
         };
     };
 }
+
 function mostra_foto(id) {
     let canvas = document.getElementById("canvas");
     let context = canvas.getContext("2d");
@@ -166,6 +185,7 @@ function mostra_foto(id) {
     document.getElementById("menu").style.display = "none";    // s'oculta el menú
     document.getElementById("div_gran").style.display = "flex";    // es mostra el contenidor de la foto a pantalla completa
 }
+
 function retorn_a_seccio() {
     document.getElementById("superior").classList.remove("ocult");    // s'elimina la classe provisional del contenidor superior
     document.getElementById("menu").style.display = "flex";    // es mostra el menú
@@ -176,6 +196,7 @@ function retorn_a_seccio() {
         document.getElementById("seccio_3").style.display = "flex";
     }
 }
+
 function omple_llista() {
     let llista = '';
     indexedDB.open("Dades").onsuccess = event => {
@@ -196,6 +217,7 @@ function omple_llista() {
         }
     }
 }
+
 function esborra_foto(id) {
     if (confirm("Vols esborrar la foto?")) {    // es demana la confirmació a l'usuari
         indexedDB.open("Dades").onsuccess = event => {   
@@ -206,17 +228,7 @@ function esborra_foto(id) {
         };
     }
 }
-let vegueries = [[41.39, 2.17, "Àmbit metropolità (Barcelona)"],    // llista on cada element és una llista amb els valors de latitud, longitud i nom de vegueria com a elements
-                 [42.17, 0.89, "Alt Pirineu i Aran (Tremp)"],
-                 [41.12, 1.24, "Camp de Tarragona (Tarragona)"],
-                 [41.73, 1.83 ,"Comarques centrals (Manresa)"],
-                 [41.98, 2.82, "Comarques gironines (Girona)"],
-                 [41.62, 0.62, "Ponent (Lleida)"],
-                 [40.81, 0.52, "Terres de l'Ebre (Tortosa)"],
-                 [41.35, 1.70, "Penedès (Vilafranca del Penedès"]];
-for (i in vegueries) {    // per cada element de la llista
-    L.marker([vegueries[i][0], vegueries[i][1]],{title:vegueries[i][2]}).addTo(mapa);
-}
+
 function geoExit(posicio){
     let latitud = posicio.coords.latitude;
     let longitud = posicio.coords.longitude;
@@ -237,4 +249,5 @@ function geoExit(posicio){
         iconSize: [mida, mida],    // mida de la icona
         iconAnchor: [mida / 2, ref_vertical]    // distàncies (horitzontal i vertical) des del punt superior esquerre de la icona fins al punt de localització
     }); 
+    
 }
