@@ -20,7 +20,7 @@ function canvia_seccio(num_boto) {
         }
         else {
             boto.style.color = "white";    // colors dels botons de seccions inactives
-            boto.style.backgroundColor = "#8A00D2";
+            boto.style.backgroundColor = "#00118E";
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
         if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
