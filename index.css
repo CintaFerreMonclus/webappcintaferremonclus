@@ -10,7 +10,7 @@ body {
     min-height: -webkit-fill-available;    
     margin: 0px;    /* elimina tots els marges del document */
     font-family: perpetua;    /* un tipus de lletra adient per a llocs web */
-    background-color: #81c9f8;    /* color de fons en format #RRGGBB */
+    background-color: #82c9f8;    /* color de fons en format #RRGGBB */
 }
 #superior {
     display: flex;
@@ -253,7 +253,7 @@ body {
 }
 .llista_fila i {    /* icona per esborrar la foto */
     flex: 1;
-    color: #ff009d;
+    color: #000000;
     font-size: 4vmax !important;
     cursor: pointer;
 }
