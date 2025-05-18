@@ -102,7 +102,7 @@ body {
 }
 #icona_camera {
     font-size: 40vmin;
-    color: #8400ff;
+    color: #7800af;
 }
 #foto {
     max-width: 60vmin;    /* dimensions màximes per a la prveisualització de les fotos */
@@ -118,7 +118,7 @@ body {
 #div_control i {
     cursor: pointer;
     font-size: 20vmin;    
-    color: rgb(0, 0, 0);
+    color: #3a0055;
 }
 #obturador {
     position: absolute;
