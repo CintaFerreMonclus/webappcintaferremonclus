@@ -19,7 +19,7 @@ body {
     align-items: center;    /* centra els elements en la direcció perpendicular a la de disposició */
     font-size: 4vmax;    /* mida d'un 4% respecte l'alçària de la pantalla */
     color: rgb(0, 0, 0);    /* color del text */
-    background-color: #ff0000 ;    /* color de fons */
+    background-color: #ffffff ;    /* color de fons */
     .ocult {
         display: none !important;    /* amb prioritat sobre les declaracions condicionals segons l'orientació */
     }
@@ -102,7 +102,7 @@ body {
 }
 #icona_camera {
     font-size: 40vmin;
-    color: #ffffff;
+    color: #8400ff;
 }
 #foto {
     max-width: 60vmin;    /* dimensions màximes per a la prveisualització de les fotos */
