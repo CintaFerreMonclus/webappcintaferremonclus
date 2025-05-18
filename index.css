@@ -152,7 +152,7 @@ body {
 }
 #llista_titol i {
     font-size: 4vmax;
-    color:#ffffff;
+    color:#7800af;
 }
 #llista_titol i:nth-child(1) {    /* primer <i> (miniatura de la foto) */
     flex: 2;
